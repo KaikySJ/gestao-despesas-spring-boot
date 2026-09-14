@@ -1,4 +1,4 @@
-package com.kaiky.projetos.gestao_despesas.Validation;
+package com.kaiky.projetos.gestao_despesas.validation;
 
 
 import jakarta.validation.Constraint;

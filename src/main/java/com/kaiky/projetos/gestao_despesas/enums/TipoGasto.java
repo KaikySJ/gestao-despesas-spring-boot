@@ -1,4 +1,4 @@
-package com.kaiky.projetos.gestao_despesas.Enum;
+package com.kaiky.projetos.gestao_despesas.enums;
 
 public enum TipoGasto {
     COMIDA,

@@ -1,6 +1,6 @@
-package com.kaiky.projetos.gestao_despesas.DTO;
+package com.kaiky.projetos.gestao_despesas.dto;
 
-import com.kaiky.projetos.gestao_despesas.Enum.TipoGasto;
+import com.kaiky.projetos.gestao_despesas.enums.TipoGasto;
 
 
 public record DespesaResponseDTO(

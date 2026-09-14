@@ -1,11 +1,10 @@
-package com.kaiky.projetos.gestao_despesas.Controller;
+package com.kaiky.projetos.gestao_despesas.controller;
 
 
-import com.kaiky.projetos.gestao_despesas.DTO.DespesaRequestDTO;
-import com.kaiky.projetos.gestao_despesas.DTO.DespesaResponseDTO;
-import com.kaiky.projetos.gestao_despesas.Service.DespesaService;
+import com.kaiky.projetos.gestao_despesas.dto.DespesaRequestDTO;
+import com.kaiky.projetos.gestao_despesas.dto.DespesaResponseDTO;
+import com.kaiky.projetos.gestao_despesas.service.DespesaService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import java.util.List;
 @RequestMapping("/despesas")
 public class DespesaController {
 
-    @Autowired
+
     private final DespesaService despesaService;
 
     public DespesaController(DespesaService despesaService) {
@@ -31,7 +30,7 @@ public class DespesaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DespesaResponseDTO> findById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.FOUND).body(despesaService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(despesaService.findById(id));
     }
 
 

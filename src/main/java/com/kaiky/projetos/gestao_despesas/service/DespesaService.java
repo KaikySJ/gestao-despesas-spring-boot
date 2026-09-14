@@ -1,11 +1,11 @@
-package com.kaiky.projetos.gestao_despesas.Service;
+package com.kaiky.projetos.gestao_despesas.service;
 
-import com.kaiky.projetos.gestao_despesas.DTO.DespesaRequestDTO;
-import com.kaiky.projetos.gestao_despesas.DTO.DespesaResponseDTO;
-import com.kaiky.projetos.gestao_despesas.Exception.DespesaNotFoundException;
-import com.kaiky.projetos.gestao_despesas.Mapper.DespesaMapper;
-import com.kaiky.projetos.gestao_despesas.Model.DespesaModel;
-import com.kaiky.projetos.gestao_despesas.Repository.DespesaRepository;
+import com.kaiky.projetos.gestao_despesas.dto.DespesaRequestDTO;
+import com.kaiky.projetos.gestao_despesas.dto.DespesaResponseDTO;
+import com.kaiky.projetos.gestao_despesas.exception.DespesaNotFoundException;
+import com.kaiky.projetos.gestao_despesas.mapper.DespesaMapper;
+import com.kaiky.projetos.gestao_despesas.model.DespesaModel;
+import com.kaiky.projetos.gestao_despesas.repository.DespesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,9 @@ public class DespesaService {
     }
 
     public DespesaResponseDTO create(DespesaRequestDTO DespesaRequest){
-        DespesaModel despesa = DespesaMapper.RequestToModel(DespesaRequest);
+        DespesaModel despesa = DespesaMapper.requestToModel(DespesaRequest);
         despesa = despesaRepository.save(despesa);
-        return DespesaMapper.ModelToResponse(despesa);
+        return DespesaMapper.modelToResponse(despesa);
     }
 
     public DespesaResponseDTO findById(Long id){
@@ -35,7 +35,7 @@ public class DespesaService {
             throw new DespesaNotFoundException();
         }
 
-        return DespesaMapper.ModelToResponse(despesa.get());
+        return DespesaMapper.modelToResponse(despesa.get());
     }
 
 

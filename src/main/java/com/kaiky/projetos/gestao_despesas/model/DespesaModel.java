@@ -1,6 +1,6 @@
-package com.kaiky.projetos.gestao_despesas.Model;
+package com.kaiky.projetos.gestao_despesas.model;
 
-import com.kaiky.projetos.gestao_despesas.Enum.TipoGasto;
+import com.kaiky.projetos.gestao_despesas.enums.TipoGasto;
 import jakarta.persistence.*;
 
 

@@ -1,4 +1,4 @@
-package com.kaiky.projetos.gestao_despesas.Exception;
+package com.kaiky.projetos.gestao_despesas.exception;
 
 public class DespesaNotFoundException extends RuntimeException {
     public DespesaNotFoundException(String message) {

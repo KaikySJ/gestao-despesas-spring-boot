@@ -1,18 +1,10 @@
-package com.kaiky.projetos.gestao_despesas.ExceptionHandler;
+package com.kaiky.projetos.gestao_despesas.exception;
 
-import com.kaiky.projetos.gestao_despesas.Exception.DespesaInvalidStatusException;
-
-import com.kaiky.projetos.gestao_despesas.Exception.DespesaNotFoundException;
-import org.jspecify.annotations.Nullable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice

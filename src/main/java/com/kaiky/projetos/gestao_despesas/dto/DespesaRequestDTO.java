@@ -1,7 +1,7 @@
-package com.kaiky.projetos.gestao_despesas.DTO;
+package com.kaiky.projetos.gestao_despesas.dto;
 
-import com.kaiky.projetos.gestao_despesas.Enum.TipoGasto;
-import com.kaiky.projetos.gestao_despesas.Validation.ValueOfEnum;
+import com.kaiky.projetos.gestao_despesas.enums.TipoGasto;
+import com.kaiky.projetos.gestao_despesas.validation.ValueOfEnum;
 import jakarta.validation.constraints.*;
 
 public record DespesaRequestDTO(
