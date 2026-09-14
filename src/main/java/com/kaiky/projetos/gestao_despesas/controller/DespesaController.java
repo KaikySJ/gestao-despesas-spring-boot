@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.image.RescaleOp;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,11 @@ public class DespesaController {
         return ResponseEntity.status(HttpStatus.OK).body(despesaService.findById(id));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        despesaService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Despesa deletada com sucesso!");
+    }
 
 
 

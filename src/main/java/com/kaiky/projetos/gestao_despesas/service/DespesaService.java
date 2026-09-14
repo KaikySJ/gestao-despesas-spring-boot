@@ -38,12 +38,21 @@ public class DespesaService {
         return DespesaMapper.modelToResponse(despesa.get());
     }
 
+    public void delete(Long id){
+        Optional<DespesaModel> despesa = despesaRepository.findById(id);
+
+        if(despesa.isEmpty()){
+            throw new DespesaNotFoundException();
+        }
+        despesaRepository.delete(despesa.get());
+    }
+
 
 
 
     public List<DespesaResponseDTO> viewAll(){
         List<DespesaModel> despesas = despesaRepository.findAll();
-        return DespesaMapper.ListModelToResponse(despesas);
+        return DespesaMapper.listModelToResponse(despesas);
     }
 
 
