@@ -15,6 +15,14 @@ public class DespesaModel {
         this.tipo = tipo;
     }
 
+    public DespesaModel(long Id, String nome, String motivo, double valor, TipoGasto tipo) {
+        this.id = Id;
+        this.nome = nome;
+        this.motivo = motivo;
+        this.valor = valor;
+        this.tipo = tipo;
+    }
+
     public DespesaModel() {
 
     }
