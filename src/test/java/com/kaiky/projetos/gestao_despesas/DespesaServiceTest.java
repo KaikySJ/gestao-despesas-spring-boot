@@ -57,6 +57,36 @@ public class DespesaServiceTest {
             //Assert
             assertNotNull(output);
         }
+    }
+
+      @Nested
+    class findDespesaById {
+
+        @Test
+        @DisplayName("Should return a existing despesa from the database with ID 1")
+        void shouldFindDespesaByIdSucessufully(){
+            //Arrange
+            DespesaModel storedDespesa = new DespesaModel(1, "Despesa", "Queria gastar", 20 , TipoGasto.COMIDA);
+            when(despesaRepository.findById(1L)).thenReturn(Optional.of(storedDespesa));
+
+            //Act
+            DespesaResponseDTO output = despesaService.findById(1L);
+            //Assert
+            assertAll(
+                    () -> assertEquals(storedDespesa.getNome(), output.nome()),
+                    () -> assertEquals(storedDespesa.getMotivo(), output.motivo()),
+                    () -> assertEquals(storedDespesa.getValor(), output.valor()),
+                    () -> assertEquals(storedDespesa.getTipo(), output.tipo())
+            );
+        }
+
+
+      @Test
+      void shouldNotFindDespesaById(){
+            when(despesaRepository.findById(1L)).thenReturn(Optional.empty());
+            assertThrows(DespesaNotFoundException.class, () -> despesaService.findById(1L), "Should be returning DespesaNotFoundException because no despesa of ID 1 exists");
+      }
 
     }
+    
 }
