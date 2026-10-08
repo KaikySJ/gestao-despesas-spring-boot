@@ -8,14 +8,14 @@ public record DespesaRequestDTO(
         @NotBlank(message = "Name must not be empty")
         String nome,
 
-        @NotBlank
+        @NotBlank(message = "Motivo should not be blank")
         String motivo,
 
         @Positive
         double valor,
 
         @NotNull
-        @ValueOfEnum(enumClass = TipoGasto.class, message = "Status não válido")
+        @ValueOfEnum(enumClass = TipoGasto.class, message = "Type of despesa is not valid")
         String tipo
 ) {
 }

@@ -39,7 +39,7 @@ public class DespesaModel {
     private double valor;
 
     @Column(name = "tipo")
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TipoGasto tipo;
 
 

@@ -23,7 +23,7 @@ public class DespesaController {
         this.despesaService = despesaService;
     }
 
-    @GetMapping("/todasDespesas")
+    @GetMapping()
     public ResponseEntity<List<DespesaResponseDTO>> viewAll(){
         List<DespesaResponseDTO> despesas = despesaService.viewAll();
         return ResponseEntity.status(HttpStatus.OK).body(despesas);
