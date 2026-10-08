@@ -16,7 +16,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
 public class DespesaServiceTest {
 
     @Mock
@@ -42,25 +40,29 @@ public class DespesaServiceTest {
         @Test
         void shouldCreateADespesa(){
 
-            //Arrange - Dados que serão usados no teste
-
-            DespesaRequestDTO despesaRequest =  new DespesaRequestDTO(
+            //ARRANGE
+            DespesaRequestDTO input =  new DespesaRequestDTO(
                     "Barra de chocolato",
                     "Estava com vontade",
                     7.99,
                     TipoGasto.COMIDA.toString()
                     );
+           when(despesaRepository.save(any())).thenReturn(new DespesaModel(1, input.nome(), input.motivo(), input.valor(), TipoGasto.valueOf(input.tipo())));
 
-           when(despesaRepository.save(any())).thenReturn(new DespesaModel(1, despesaRequest.nome(), despesaRequest.motivo(), despesaRequest.valor(), TipoGasto.valueOf(despesaRequest.tipo())));
 
+            //ACT
+            DespesaResponseDTO output= despesaService.create(input);
 
-            //Act
-
-            DespesaResponseDTO output= despesaService.create(despesaRequest);
-
-            //Assert
+            //ASSERT
             assertNotNull(output);
+            assertAll(
+                    () -> assertEquals(input.nome(), output.nome()),
+                    () -> assertEquals(input.motivo(), output.motivo()),
+                    () -> assertEquals(TipoGasto.valueOf(input.tipo()), output.tipo()),
+                    () -> assertEquals(input.valor(), output.valor())
+            );
         }
+
     }
 
       @Nested
@@ -173,7 +175,7 @@ public class DespesaServiceTest {
         @DisplayName("Should not delete a despesa because despesa doesnt exist")
         void shouldNotFindADespesaToDelete(){
             //ARRANGE
-            when(despesaRepository.findById(any(Long.class))).thenThrow(DespesaNotFoundException.class);
+            when(despesaRepository.findById(any(Long.class))).thenReturn(Optional.empty());
 
             //ACT AND ASSERT
             assertThrows(DespesaNotFoundException.class, () -> despesaService.delete(1L), "Should be throwing despesaNotFoundException because theres no despesa with that ID");

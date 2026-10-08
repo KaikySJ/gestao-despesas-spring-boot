@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class DespesaService {
 
-    @Autowired
+
     private final DespesaRepository despesaRepository;
 
     public DespesaService(DespesaRepository despesaRepository) {
