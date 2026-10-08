@@ -24,8 +24,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -151,6 +150,39 @@ public class DespesaServiceTest {
             assertEquals(expectedResult, output);
 
         }
+    }
+
+    @Nested
+    class DeleteDespesa{
+
+        @Test
+        void shouldDeleteDespesaSuccessfully(){
+            DespesaModel existingDespesa = new DespesaModel(1,"Barra de chocolate",
+                    "Vontade",
+                    7,
+                    TipoGasto.COMIDA);
+
+            when(despesaRepository.findById(1L)).thenReturn(Optional.of(existingDespesa));
+
+            despesaService.delete(1L);
+
+            verify(despesaRepository).delete(existingDespesa);
+        }
+
+        @Test
+        @DisplayName("Should not delete a despesa because despesa doesnt exist")
+        void shouldNotFindADespesaToDelete(){
+            //ARRANGE
+            when(despesaRepository.findById(any(Long.class))).thenThrow(DespesaNotFoundException.class);
+
+            //ACT AND ASSERT
+            assertThrows(DespesaNotFoundException.class, () -> despesaService.delete(1L), "Should be throwing despesaNotFoundException because theres no despesa with that ID");
+
+
+
+        }
+
+
     }
     
 }
